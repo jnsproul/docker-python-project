@@ -1,0 +1,26 @@
+""" SINCE I CANNOT GET PYTHON_ON_WHALES TO WORK THIS IS GONNA HAVE TO BE FOR LATER
+print("If previous deployment at {}/dsp exists, remove".format(DEPLOYMENT_TARGET))
+if (os.path.exists(DEPLOYMENT_TARGET + "/dsp")):
+    print("Change to deployment directory.")
+    print("os.chdir({}+\"/dsp\"").format(DEPLOYMENT_TARGET)
+    os.chdir(DEPLOYMENT_TARGET+"/dsp")
+    print("Stop previous deployment.")
+    # here comes the docker stuff
+    print("docker-compose  --file ${}/dsp/docker-compose-upstream.yml --env-file ${}/dsp/.env down".format(DEPLOYMENT_TARGET,DEPLOYMENT_TARGET))
+    docker = DockerClient(
+        compose_files=["{}/dsp/docker-compose-upstream.yml".format(DEPLOYMENT_TARGET)],
+        compose_env_file="{}/dsp/docker-compose-upstream.yml".format(DEPLOYMENT_TARGET)
+    )
+    docker.compose.down()
+    print("Previous deployment stopped.")
+    print("Change to deployment target directory.")
+    print("cd {}".format(DEPLOYMENT_TARGET))
+    os.chdir(DEPLOYMENT_TARGET)
+
+    print("Removing previous deployment.")
+    print("shutil.rmtree(path) # essentially deletes a directory and it's contents")
+    shutil.rmtree("{}/dsp",DEPLOYMENT_TARGET)
+    print("Previous deployment removed.")
+else:
+    print("no previous deployment.")
+"""
